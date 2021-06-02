@@ -1,0 +1,55 @@
+ManifestFileVersion: 0
+CRC: 421811402
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ed23969b151470f33712fc6d624c4e20
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 80624979e4e8d58194ab0aa2cd57db8b
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 89
+  Script: {instanceID: 0}
+- Class: 104
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 75621f03c4b48ff4fb0b54efdd4cccb2, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: a9af5bdc9418505448286199ca259020, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 157
+  Script: {instanceID: 0}
+- Class: 196
+  Script: {instanceID: 0}
+- Class: 258
+  Script: {instanceID: 0}
+- Class: 850595691
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Scenes/Map.unity
+Dependencies: []
