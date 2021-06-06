@@ -59,6 +59,7 @@ namespace LambWorks.Networking.Client {
         public void SpawnEntity(string model, uint id, Vector3 position, Quaternion rotation, Vector3 scale) {
             Entity e = Instantiate(FindEntityByModelName(model).gameObject).GetComponent<Entity>();
             e.Initialize(id, position, rotation, scale);
+            if(!entities.ContainsKey(id))
             entities.Add(id, e);
         }
 

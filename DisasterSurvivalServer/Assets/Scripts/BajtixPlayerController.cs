@@ -78,6 +78,10 @@ public class BajtixPlayerController : MonoBehaviour {
     private float jumpCooldown = 0.2f;
     private Vector3 input;
 
+    [Header("Other BS")]
+    public Interactable playerUsing;
+    public Transform lookTransform;
+
     [ContextMenu("Setup prefab")]
     void CreateBaseSetup() {
         SphereCollider sc = GetComponent<SphereCollider>();
@@ -216,6 +220,11 @@ public class BajtixPlayerController : MonoBehaviour {
         if(jumpCooldown > 0) jumpCooldown-=Time.fixedDeltaTime;
 
         if(jump && jumpCooldown <= 0) Jump(); else if(isGrounded) rb.AddForce(Vector3.down * downPushForce);    
+
+
+        // interactable stuff
+
+        if(playerUsing != null) playerUsing.OnUsing(this); 
     }
 
     ///<summary>Manages the downwards force that causes the player to slide down</summary>
@@ -329,4 +338,33 @@ public class BajtixPlayerController : MonoBehaviour {
        
         return normal / groundCheckers.Length;
     }
+
+    public void Interaction() {
+        if(playerUsing != null) {
+            if(playerUsing.Throw(this)) {
+                playerUsing = null;
+                return;
+            }
+            else {
+                return;
+            }
+        }
+
+
+        Transform origin = lookTransform; // TODO: get rid of transform. find
+
+        Vector3 p = origin.transform.position;
+        Vector3 d = origin.transform.forward;
+
+        RaycastHit hit;
+        if(Physics.Raycast(p,d,out hit, 5, groundMask)) {
+            var i = hit.collider.gameObject.GetComponent<Interactable>();
+            if(i != null) {
+                if(i.OnInteract(this))
+                    playerUsing = i;
+            }
+        }
+    }
+
+    
 }

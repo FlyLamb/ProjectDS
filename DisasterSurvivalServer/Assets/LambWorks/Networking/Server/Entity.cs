@@ -8,6 +8,7 @@ namespace LambWorks.Networking.Server {
     public class Entity : MonoBehaviour {
         /*[HideInInspector]*/ public uint id = 0;
         public string model;
+        public bool syncScale = false;
 
         protected virtual void Start() {
             NetworkManager.instance.RegisterEntity(this);

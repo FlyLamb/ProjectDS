@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/LambWorks/Networking/Client/Scenes/Main.unity
+    guid: df1b584a1801bb74a863186234b910bd
+  - enabled: 1
+    path: Assets/Scenes/Map.unity
+    guid: 76d4276296f577744b8ed9dec9f8709f
   m_configObjects: {}

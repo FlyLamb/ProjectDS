@@ -12,6 +12,7 @@ namespace LambWorks.Networking.Client {
         public int port = 26950;
         public int timeout = 3;
         public int myId = 0;
+        public string username;
         public TCP tcp;
         public UDP udp;
 
@@ -64,7 +65,8 @@ namespace LambWorks.Networking.Client {
                 try {
                     if (!ar.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(2), false)) {
                         socket.Close(); //We have timed out!
-                        UnityEngine.SceneManagement.SceneManager.LoadScene(0); //this line is here so that we go back to the menu
+                        //UnityEngine.SceneManagement.SceneManager.LoadScene(0); //this line is here so that we go back to the menu
+                        Debug.LogError("Timeout!");
                         return;
                     }             
                 }

@@ -12,6 +12,8 @@ namespace LambWorks.Networking.Client {
         private void Start() {
             verticalRotation = transform.localEulerAngles.x;
             horizontalRotation = player.transform.eulerAngles.y;
+
+            sensitivity = ConArg.GetFloat("--set_sens");
         }
 
         private void Update() {

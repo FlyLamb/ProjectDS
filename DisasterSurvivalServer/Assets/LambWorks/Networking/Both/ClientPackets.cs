@@ -4,6 +4,7 @@ namespace LambWorks.Networking {
     public enum ClientPackets {
         welcomeReceived = 1,
         playerMovement,
-        entityMessage
+        entityMessage,
+        playerInteract
     }
 }

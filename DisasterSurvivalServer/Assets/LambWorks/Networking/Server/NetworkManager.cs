@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
+
 namespace LambWorks.Networking.Server {
     public class NetworkManager : MonoBehaviour {
         public static NetworkManager instance;
@@ -27,8 +29,15 @@ namespace LambWorks.Networking.Server {
             Server.Stop();
         }
 
+        public Vector3 GetRandomPlayerSpawn() {
+            GameObject[] spawns = GameObject.FindGameObjectsWithTag("PlayerSpawn");
+            if(spawns.Length == 0) return Vector3.up;
+            return spawns[Random.Range(0,spawns.Length)].transform.position;
+        }
+
         public Player InstantiatePlayer() {
-            return Instantiate(playerPrefab, new Vector3(0f, 0.5f, 0f), Quaternion.identity).GetComponent<Player>();
+            Vector3 playerSpawn = GetRandomPlayerSpawn();
+            return Instantiate(playerPrefab, playerSpawn, Quaternion.identity).GetComponent<Player>();
         }
 
         /// <summary>This is called when a player joins</summary>
@@ -63,7 +72,7 @@ namespace LambWorks.Networking.Server {
             if (!Server.entities.ContainsKey(e.id)) return;
             ServerSend.DestroyEntity(e);
 
-            Server.entities[e.id] = null;
+            Server.entities.Remove(e.id);
         }
     }
 }

@@ -6,6 +6,7 @@ namespace LambWorks.Networking.Client {
         public static void WelcomeReceived() {
             using (Packet packet = new Packet((int)ClientPackets.welcomeReceived)) {
                 packet.Write(Client.instance.myId);
+                packet.Write(Client.instance.username);
                 SendTCPData(packet);
             }
         }
@@ -16,7 +17,7 @@ namespace LambWorks.Networking.Client {
             using (Packet packet = new Packet((int)ClientPackets.playerMovement)) {
                 packet.Write(inputs);
                 packet.Write(GameManager.players[Client.instance.myId].transform.rotation);
-
+                packet.Write(GameManager.players[Client.instance.myId].transform.Find("Camera").rotation); // TODO: remove the transform.find
                 SendUDPData(packet);
             }
         }
@@ -31,6 +32,12 @@ namespace LambWorks.Networking.Client {
                 packet.Write(message);
                 packet.WriteObject(parameter);
 
+                SendTCPData(packet);
+            }
+        }
+
+        public static void PlayerInteract() {
+            using (Packet packet = new Packet((int)ClientPackets.playerInteract)) {
                 SendTCPData(packet);
             }
         }

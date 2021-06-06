@@ -27,6 +27,8 @@ namespace LambWorks.Networking.Client {
             transform.position = position;
             transform.rotation = rotation;
             transform.localScale = scale;
+
+            GetComponent<ReplaceOnServer>().StopPerformDie();
         }
 
         /// <summary>Updates the entity data</summary>

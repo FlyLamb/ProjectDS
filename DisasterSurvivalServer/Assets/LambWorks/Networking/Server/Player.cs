@@ -15,14 +15,25 @@ namespace LambWorks.Networking.Server {
         }
 
 
-        public void SetInput(Vector3 input, Quaternion rotation) {
+        public void SetInput(Vector3 input, Quaternion rotation, Quaternion camRotation) {
             GetComponent<BajtixPlayerController>().SetInput(input);
             transform.rotation = rotation;
+            transform.Find("Camera").rotation = camRotation;
         }
 
         private void FixedUpdate() {
             ServerSend.PlayerPosition(this);
             ServerSend.PlayerRotation(this);
+        }
+
+        void OnCollisionEnter(Collision cd) {
+            if(cd.relativeVelocity.magnitude > 10) {
+                health -= (short)(cd.relativeVelocity.magnitude / 2);
+            }
+
+            if(health <= 0) {
+                transform.position = NetworkManager.instance.GetRandomPlayerSpawn();
+            }
         }
 
     }

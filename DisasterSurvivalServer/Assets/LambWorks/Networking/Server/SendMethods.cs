@@ -71,7 +71,10 @@ namespace LambWorks.Networking.Server {
                 packet.Write(entity.id);
                 packet.Write(entity.transform.position);
                 packet.Write(entity.transform.rotation);
-                packet.Write(entity.transform.localScale);
+                if(entity.syncScale)
+                    packet.Write(entity.transform.localScale);
+                else 
+                    packet.Write(Vector3.one);
                 packet.WriteObject(entity.GetData());
 
                 SendUDPDataToAll(packet);
