@@ -12,6 +12,7 @@ namespace LambWorks.Networking.Client {
                 { (int)ServerPackets.playerPosition, ClientHandle.PlayerPosition },
                 { (int)ServerPackets.playerRotation, ClientHandle.PlayerRotation },
                 { (int)ServerPackets.playerDisconnected, ClientHandle.PlayerDisconnected },
+                { (int)ServerPackets.playerAnimation, ClientHandle.PlayerAnimation },
                 { (int)ServerPackets.entitySpawn, ClientHandle.SpawnEntity },
                 { (int)ServerPackets.entityUpdate, ClientHandle.UpdateEntity },
                 { (int)ServerPackets.entityDestroy, ClientHandle.DestroyEntity },

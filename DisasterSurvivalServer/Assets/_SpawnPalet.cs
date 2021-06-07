@@ -13,9 +13,9 @@ public class _SpawnPalet : MonoBehaviour
 
     IEnumerator Spawnuj() {
         while(true) {
-        yield return new WaitForSeconds(3);
-        
-        Instantiate(paleta, paletySpots[Random.Range(0,paletySpots.Length)].position, Quaternion.identity);
+            yield return new WaitForSeconds(10);
+            
+            Instantiate(paleta, paletySpots[Random.Range(0,paletySpots.Length)].position, Quaternion.identity);
         }
     }
 }

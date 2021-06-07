@@ -14,6 +14,7 @@ public class _HealthDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetComponent<Text>().text =  GameObject.Find("LocalPlayer(Clone)").GetComponent<PlayerManager>().health.ToString();
+        if(GameObject.Find("LocalPlayer(Clone)") != null)
+        GetComponent<TMPro.TextMeshProUGUI>().text =  GameObject.Find("LocalPlayer(Clone)").GetComponent<PlayerManager>().health.ToString();
     }
 }

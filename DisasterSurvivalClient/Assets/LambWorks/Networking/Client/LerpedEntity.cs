@@ -10,6 +10,13 @@ namespace LambWorks.Networking.Client {
         private Quaternion dRot = Quaternion.identity;
         private Vector3 dSca = Vector3.zero;
 
+        public override void Initialize(uint id, Vector3 position, Quaternion rotation, Vector3 scale) {
+            base.Initialize(id, position, rotation, scale);
+            dPos = position;
+            dRot = rotation;
+            dSca = scale;
+        }   
+
         public override void UpdateEntity(Vector3 position, Quaternion rotation, Vector3 scale, object data) {
             dPos = position;
             dRot = rotation;

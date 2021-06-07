@@ -64,6 +64,21 @@ namespace LambWorks.Networking.Server {
             }
         }
 
+        
+        public static void PlayerAnimation(int playerId, float[] values) {
+            using (Packet packet = new Packet((int)ServerPackets.playerAnimation)) {
+                packet.Write(playerId);
+                packet.Write(values.Length);
+                for (int i = 0; i < values.Length; i++) {
+                    packet.Write(values[i]);
+                }
+
+                SendUDPDataToAll(packet);
+            }
+
+            
+        }
+
         /// <summary>Sends an entity update to the client</summary>
         /// <param name="entity">The entity to send.</param>
         public static void UpdateEntity(Entity entity) {

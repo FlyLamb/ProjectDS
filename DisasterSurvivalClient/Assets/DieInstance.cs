@@ -11,6 +11,7 @@ public class DieInstance : MonoBehaviour {
 
     bool isQuitting;
     private GameObject tempInstance;
+    Vector3 delta;
     
     void OnApplicationQuit() {
         isQuitting = true;
@@ -18,7 +19,7 @@ public class DieInstance : MonoBehaviour {
 
     void Update() {
 
-        Vector3 delta = transform.position - previousPosition;
+        delta = transform.position - previousPosition;
 
         avgvelocity = Mathf.Lerp(avgvelocity,delta.magnitude/Time.deltaTime, Time.deltaTime * 20);
 
@@ -29,7 +30,8 @@ public class DieInstance : MonoBehaviour {
         if(isQuitting) return;
         tempInstance = Instantiate(prefab, transform.position, transform.rotation);
         foreach(var w in tempInstance.GetComponentsInChildren<Rigidbody>()) {
-            w.AddExplosionForce(avgvelocity * 10, transform.position, 4);
+            w.AddForce(delta/Time.deltaTime * 30);
+            w.AddExplosionForce(avgvelocity * 9, transform.position, 2);
         }
 
         if(prefabLifetime > 0)

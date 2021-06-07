@@ -13,6 +13,8 @@ namespace LambWorks.Networking.Client {
         public void Initialize(int id, string username) {
             this.id = id;
             this.username = username;
+            if(transform.Find("Canvas") != null)
+                transform.Find("Canvas").Find("Username").GetComponent<TMPro.TextMeshProUGUI>().text = username;
         }
 
         private void Update() {

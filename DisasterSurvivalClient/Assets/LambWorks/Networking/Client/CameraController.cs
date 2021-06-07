@@ -6,14 +6,21 @@ namespace LambWorks.Networking.Client {
         public float sensitivity = 100f;
         public float clampAngle = 85f;
 
+        private Camera me;
+
         private float verticalRotation;
         private float horizontalRotation;
+
+        private Vector3 delta;
+        private Vector3 lastPos;
+        private float estSpeed;
 
         private void Start() {
             verticalRotation = transform.localEulerAngles.x;
             horizontalRotation = player.transform.eulerAngles.y;
 
             sensitivity = ConArg.GetFloat("--set_sens");
+            me= GetComponent<Camera>();
         }
 
         private void Update() {
@@ -25,6 +32,12 @@ namespace LambWorks.Networking.Client {
                 Look();
             }
             Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
+
+            estSpeed = Mathf.Lerp(estSpeed, delta.magnitude/Time.deltaTime, Time.deltaTime * 5);
+            delta = transform.position - lastPos;
+            lastPos = transform.position;
+
+            me.fieldOfView = Mathf.Clamp(60 + estSpeed * 1.5f, 62,75);
         }
 
         private void Look() {
@@ -38,6 +51,7 @@ namespace LambWorks.Networking.Client {
 
             transform.localRotation = Quaternion.Euler(verticalRotation, 0f, 0f);
             player.transform.rotation = Quaternion.Euler(0f, horizontalRotation, 0f);
+
         }
 
         private void ToggleCursorMode() {

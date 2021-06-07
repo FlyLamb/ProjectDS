@@ -225,6 +225,8 @@ public class BajtixPlayerController : MonoBehaviour {
         // interactable stuff
 
         if(playerUsing != null) playerUsing.OnUsing(this); 
+
+        Animation();
     }
 
     ///<summary>Manages the downwards force that causes the player to slide down</summary>
@@ -337,6 +339,12 @@ public class BajtixPlayerController : MonoBehaviour {
         }
        
         return normal / groundCheckers.Length;
+    }
+
+    private void Animation() {
+        bool isRunningBackwards = IsRoughlyOpposite(transform.forward, smoothedVelocity);
+        GetComponent<SyncedAnimator>().values[0] = smoothedVelocity.magnitude / speed * (isRunningBackwards ? -1 : 1);
+        GetComponent<SyncedAnimator>().values[1] = isGrounded ? 1 : 0;
     }
 
     public void Interaction() {

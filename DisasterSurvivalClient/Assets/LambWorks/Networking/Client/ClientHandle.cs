@@ -56,6 +56,18 @@ namespace LambWorks.Networking.Client {
             }
         }
 
+        public static void PlayerAnimation(Packet packet) {
+            int playerId = packet.ReadInt();
+            int vl = packet.ReadInt();
+            float[] values = new float[vl];
+            for (int i = 0; i < vl; i++) {
+                values[i] = packet.ReadFloat();
+            }
+
+            GameManager.players[playerId].GetComponent<SyncedAnimator>().SetValues(values);
+
+        }
+
         public static void SpawnEntity(Packet packet) {
             string model = packet.ReadString();
             uint id = (uint)packet.ReadLong();
@@ -73,12 +85,14 @@ namespace LambWorks.Networking.Client {
             Vector3 scale = packet.ReadVector3();
             object data = packet.ReadObject();
 
-            GameManager.entities[id].UpdateEntity(position, rotation, scale, data);
+            if(GameManager.entities.ContainsKey(id))
+                GameManager.entities[id].UpdateEntity(position, rotation, scale, data);
         }
 
         public static void DestroyEntity(Packet packet) {
             uint id = (uint)packet.ReadLong();
-            GameManager.instance.KillEntity(id);
+            if(GameManager.entities.ContainsKey(id))
+                GameManager.instance.KillEntity(id);
         }
 
         public static void MessageEntity(Packet packet) {
@@ -86,7 +100,8 @@ namespace LambWorks.Networking.Client {
             string msg = packet.ReadString();
             object obj = packet.ReadObject();
 
-            GameManager.entities[id].SendMessage(msg, obj);
+            if(GameManager.entities.ContainsKey(id))
+                GameManager.entities[id].SendMessage(msg, obj);
         }
     }
 }

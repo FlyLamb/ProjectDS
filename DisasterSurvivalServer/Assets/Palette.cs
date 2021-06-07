@@ -6,7 +6,7 @@ using LambWorks.Networking.Server;
 public class Palette : Entity
 {
     void OnCollisionEnter(Collision c) {
-        if(c.relativeVelocity.magnitude > 10) {
+        if(c.relativeVelocity.magnitude > 12) {
             Destroy(gameObject);
         }
     }

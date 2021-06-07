@@ -11,7 +11,7 @@ namespace LambWorks.Networking.Server {
                 { (int)ClientPackets.welcomeReceived, ServerHandle.WelcomeReceived },
                 { (int)ClientPackets.playerMovement, ServerHandle.PlayerMovement },
                 { (int)ClientPackets.entityMessage, ServerHandle.MessageEntity },
-                {(int)ClientPackets.playerInteract, ServerHandle.PlayerInteract}
+                { (int)ClientPackets.playerInteract, ServerHandle.PlayerInteract}
             };
         }
     }

@@ -6,7 +6,7 @@ namespace LambWorks.Networking.Client {
         public static void WelcomeReceived() {
             using (Packet packet = new Packet((int)ClientPackets.welcomeReceived)) {
                 packet.Write(Client.instance.myId);
-                packet.Write(Client.instance.username);
+                packet.Write(ConArg.Get("--username"));
                 SendTCPData(packet);
             }
         }

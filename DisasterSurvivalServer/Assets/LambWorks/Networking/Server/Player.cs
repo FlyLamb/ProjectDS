@@ -24,16 +24,19 @@ namespace LambWorks.Networking.Server {
         private void FixedUpdate() {
             ServerSend.PlayerPosition(this);
             ServerSend.PlayerRotation(this);
-        }
-
-        void OnCollisionEnter(Collision cd) {
-            if(cd.relativeVelocity.magnitude > 10) {
-                health -= (short)(cd.relativeVelocity.magnitude / 2);
-            }
 
             if(health <= 0) {
                 transform.position = NetworkManager.instance.GetRandomPlayerSpawn();
+                health = 100;
             }
+  
+        }
+
+
+        void OnCollisionEnter(Collision cd) {
+            if(cd.relativeVelocity.magnitude > 20) {
+                health -= (short)(cd.relativeVelocity.magnitude / 2);
+            }    
         }
 
     }
