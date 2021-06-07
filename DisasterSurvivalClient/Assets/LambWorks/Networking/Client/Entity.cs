@@ -37,8 +37,20 @@ namespace LambWorks.Networking.Client {
             transform.rotation = rotation;
             transform.localScale = scale;
             this.data = data;
+
+            
+
             if(onUpdate != null)
                 onUpdate.Invoke();
+        }
+
+        protected void Cleanup() {
+            bool marked = false;
+            foreach(Entity e in GameManager.entities.Values) {
+                if(e.gameObject == gameObject) marked = true;
+            }
+
+            if(!marked) Destroy(gameObject);
         }
     }
 }

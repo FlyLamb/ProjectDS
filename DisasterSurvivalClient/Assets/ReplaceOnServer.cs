@@ -9,7 +9,9 @@ public class ReplaceOnServer : MonoBehaviour {
     }
 
     IEnumerator DestroyTimer() {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(0.1f);
+        gameObject.SetActive(false);
+        gameObject.transform.position = Vector3.down * 1000; // stupid OnDestroy workaround
         Destroy(gameObject);
     }
 
