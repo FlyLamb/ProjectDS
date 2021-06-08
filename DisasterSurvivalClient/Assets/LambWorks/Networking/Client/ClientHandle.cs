@@ -64,7 +64,7 @@ namespace LambWorks.Networking.Client {
                 values[i] = packet.ReadFloat();
             }
 
-            GameManager.players[playerId].GetComponent<SyncedAnimator>().SetValues(values);
+            if(GameManager.players.ContainsKey(playerId)) GameManager.players[playerId].GetComponent<SyncedAnimator>().SetValues(values);
 
         }
 

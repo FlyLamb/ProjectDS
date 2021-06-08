@@ -14,6 +14,10 @@ namespace LambWorks.Networking.Client {
         /// <summary>This is called when we receive an update to the entity.</summary>
         public OnReceivedUpdate onUpdate;
 
+        public virtual void Start() {
+            Cleanup(); // TODO: this may not be a good idea
+        }
+
         /// <summary>Messages the server entity (basically calls a function by name)</summary>
         /// <param name="msg">The name of the function to call</param>
         /// <param name="args">Arguments to pass on to the function</param>
@@ -29,6 +33,7 @@ namespace LambWorks.Networking.Client {
             transform.localScale = scale;
 
             GetComponent<ReplaceOnServer>().StopPerformDie();
+            
         }
 
         /// <summary>Updates the entity data</summary>
@@ -50,7 +55,7 @@ namespace LambWorks.Networking.Client {
                 if(e.gameObject == gameObject) marked = true;
             }
 
-            if(!marked) Destroy(gameObject);
+            if(!marked) {transform.position = Vector3.down * 1000; Destroy(gameObject);}
         }
     }
 }
