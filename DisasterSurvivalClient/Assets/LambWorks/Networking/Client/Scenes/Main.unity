@@ -197,7 +197,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1.1e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -459,6 +459,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 7677484484946083636, guid: 557e9a3a3d9ee014087f779a676d456f, type: 3}
   registeredEntities:
   - {fileID: 3139350365819378799, guid: 0aa512ddccda2c043b46806e2426a766, type: 3}
+  - {fileID: 639718331280804416, guid: 02075d6be7474d9408bfe5d05ff677c9, type: 3}
+  - {fileID: -4125645564346787371, guid: 54cd6b06be82f5244b5ecaf9b18e9196, type: 3}
 --- !u!4 &761847842
 Transform:
   m_ObjectHideFlags: 0

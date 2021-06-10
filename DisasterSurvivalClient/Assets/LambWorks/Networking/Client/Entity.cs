@@ -32,6 +32,7 @@ namespace LambWorks.Networking.Client {
             transform.rotation = rotation;
             transform.localScale = scale;
 
+            if(GetComponent<ReplaceOnServer>() != null)
             GetComponent<ReplaceOnServer>().StopPerformDie();
             
         }
