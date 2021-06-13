@@ -15,14 +15,14 @@ public class Yeetable : Interactable
 
         GetComponent<Rigidbody>().AddForce(force * Time.fixedDeltaTime * 5000);
 
-        GetComponent<Rigidbody>().drag = Vector3.Distance(dp, transform.position) < 10 ? 4 : 0;
+        GetComponent<Rigidbody>().drag = Vector3.Distance(dp, transform.position) < 10 ? 8 : 0;
         
 
         return Vector3.Distance(dp, transform.position) < 10;
     }
 
     public override bool Throw(BajtixPlayerController player) {
-        GetComponent<Rigidbody>().AddForce(player.lookTransform.forward * Time.fixedDeltaTime * 50000);
+        GetComponent<Rigidbody>().AddForce(player.lookTransform.forward * Time.fixedDeltaTime * 60000);
         GetComponent<Rigidbody>().drag = 0;
         return true;
     }

@@ -46,5 +46,5 @@ MonoBehaviour:
   id: 0
   model: fx_explosion
   syncScale: 0
-  radius: 9
+  radius: 8
   force: 1500

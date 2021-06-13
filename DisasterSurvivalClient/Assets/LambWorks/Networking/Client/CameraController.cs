@@ -33,7 +33,7 @@ namespace LambWorks.Networking.Client {
             }
             Debug.DrawRay(transform.position, transform.forward * 2, Color.red);
 
-            estSpeed = Mathf.Lerp(estSpeed, delta.magnitude/Time.deltaTime, Time.deltaTime * 5);
+            estSpeed = Mathf.Lerp(estSpeed, delta.magnitude/Time.deltaTime, Time.deltaTime * 3);
             delta = transform.position - lastPos;
             lastPos = transform.position;
 
