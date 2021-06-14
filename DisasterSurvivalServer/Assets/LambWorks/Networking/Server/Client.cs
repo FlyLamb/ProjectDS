@@ -205,6 +205,8 @@ namespace LambWorks.Networking.Server {
         private void Disconnect() {
             Debug.Log($"{tcp.socket.Client.RemoteEndPoint} has disconnected.");
 
+            NetworkManager.instance.chatManager.Send($"{player.username} has left");
+
             ThreadManager.ExecuteOnMainThread(() => {
                 UnityEngine.Object.Destroy(player.gameObject);
                 player = null;
@@ -212,7 +214,7 @@ namespace LambWorks.Networking.Server {
 
             tcp.Disconnect();
             udp.Disconnect();
-
+            
             ServerSend.PlayerDisconnected(id);
             
         }

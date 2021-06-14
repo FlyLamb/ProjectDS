@@ -37,7 +37,7 @@ namespace LambWorks.Networking.Client {
             delta = transform.position - lastPos;
             lastPos = transform.position;
 
-            me.fieldOfView = Mathf.Clamp(60 + estSpeed * 1.5f, 62,75);
+            me.fieldOfView = Mathf.Clamp(60 + estSpeed * 1.5f, 62,80);
         }
 
         private void Look() {

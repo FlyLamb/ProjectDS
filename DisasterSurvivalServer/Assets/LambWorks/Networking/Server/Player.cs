@@ -25,18 +25,22 @@ namespace LambWorks.Networking.Server {
             ServerSend.PlayerPosition(this);
             ServerSend.PlayerRotation(this);
 
+            if(transform.position.y < -20) health = 0;
+
             if(health <= 0) {
-                transform.position = NetworkManager.instance.GetRandomPlayerSpawn();
-                health = 100;
+                NetworkManager.instance.roundtimeManager.HandleDeath(GetComponent<BajtixPlayerController>());
             }
   
         }
 
 
         void OnCollisionEnter(Collision cd) {
-            if(cd.relativeVelocity.magnitude > 20) {
-                health -= (short)(cd.relativeVelocity.magnitude / 2);
-            }    
+            float impactMass = GetComponent<Rigidbody>().mass;
+            if(cd.rigidbody != null) impactMass += cd.rigidbody.mass;
+
+            float impact = impactMass * cd.relativeVelocity.magnitude;
+            float dmg = Mathf.Pow(Mathf.Max(0,impact - 35), 1.1f);
+            health -= (short)dmg;
         }
 
     }

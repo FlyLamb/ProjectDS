@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class Yeetable : Interactable
 {
+    private BajtixPlayerController lastInteracted;
+
     public override bool OnInteract(BajtixPlayerController player) {
         GetComponent<Rigidbody>().AddForce(Vector3.up * 100);
-        return true;
+        lastInteracted = player;
+        
+        return !isUsed;
     }
 
     public override bool OnUsing(BajtixPlayerController player) {
-        Vector3 dp = player.lookTransform.position + player.lookTransform.forward * 2f + Vector3.up * 0.5f;
+        Vector3 dp = player.lookTransform.position + player.lookTransform.forward * 3f + Vector3.up * 0.5f;
         Vector3 force = (dp - transform.position) * (Vector3.Distance(dp, transform.position) - 1);
 
         GetComponent<Rigidbody>().AddForce(force * Time.fixedDeltaTime * 5000);

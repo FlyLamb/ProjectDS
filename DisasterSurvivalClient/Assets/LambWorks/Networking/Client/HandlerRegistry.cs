@@ -16,7 +16,10 @@ namespace LambWorks.Networking.Client {
                 { (int)ServerPackets.entitySpawn, ClientHandle.SpawnEntity },
                 { (int)ServerPackets.entityUpdate, ClientHandle.UpdateEntity },
                 { (int)ServerPackets.entityDestroy, ClientHandle.DestroyEntity },
-                { (int)ServerPackets.entityMessage, ClientHandle.MessageEntity }
+                { (int)ServerPackets.entityMessage, ClientHandle.MessageEntity },
+                { (int)ServerPackets.roundTime, ClientHandle.RoundTime },
+                { (int)ServerPackets.chatMessage, ClientHandle.ChatMessage }
+
             };
         }
     }

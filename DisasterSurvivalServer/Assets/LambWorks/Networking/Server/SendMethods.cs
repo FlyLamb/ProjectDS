@@ -57,6 +57,7 @@ namespace LambWorks.Networking.Server {
         /// <summary>Sends a player disconnected, so that the player is removed in the Clients.</summary>
         /// <param name="playerId">The player which disconnected</param>
         public static void PlayerDisconnected(int playerId) {
+            
             using (Packet packet = new Packet((int)ServerPackets.playerDisconnected)) {
                 packet.Write(playerId);
 
@@ -133,6 +134,22 @@ namespace LambWorks.Networking.Server {
                 packet.Write(entity.id);
                 packet.Write(message);
                 packet.WriteObject(parameter);
+
+                SendTCPDataToAll(packet);
+            }
+        }
+
+        public static void RoundTime(float roundTime) {
+            using(Packet packet = new Packet((int)ServerPackets.roundTime)) {
+                packet.Write(roundTime);
+
+                SendUDPDataToAll(packet);
+            }
+        }
+
+        public static void ChatMessage(string message) {
+            using(Packet packet = new Packet((int)ServerPackets.chatMessage)) {
+                packet.Write(message);
 
                 SendTCPDataToAll(packet);
             }

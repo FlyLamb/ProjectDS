@@ -377,6 +377,8 @@ GameObject:
   - component: {fileID: 1902706398}
   - component: {fileID: 1902706401}
   - component: {fileID: 1902706402}
+  - component: {fileID: 1902706403}
+  - component: {fileID: 1902706404}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -409,6 +411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7217166653837279683, guid: 15a67c704313660439da11aba3b83b48, type: 3}
+  roundtimeManager: {fileID: 1902706403}
+  chatManager: {fileID: 1902706404}
 --- !u!4 &1902706400
 Transform:
   m_ObjectHideFlags: 0
@@ -452,3 +456,31 @@ MonoBehaviour:
   - {fileID: 3606523541695759691, guid: 53376c12f0bfafb4dac56db5cbb27479, type: 3}
   - {fileID: 3050452784499093382, guid: 4b396db31a450e24e940f1de0483c195, type: 3}
   - {fileID: 6425719243343120991, guid: a5df3691dc84454449dfa0f0eeb4d73d, type: 3}
+  - {fileID: 3050452784499093382, guid: 9b59e870e4e52114cb58af7d2d859280, type: 3}
+--- !u!114 &1902706403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902706397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45d08e20102a9e34eb584f786e895302, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  roundTime: 0
+  playersAlive: []
+  isWarmup: 1
+--- !u!114 &1902706404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902706397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cf8bf24ac9d1c14da799fe00f3785c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

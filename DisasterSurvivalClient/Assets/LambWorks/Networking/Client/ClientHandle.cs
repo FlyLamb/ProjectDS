@@ -103,5 +103,17 @@ namespace LambWorks.Networking.Client {
             if(GameManager.entities.ContainsKey(id))
                 GameManager.entities[id].SendMessage(msg, obj);
         }
+
+        public static void RoundTime(Packet packet) {
+            float time = packet.ReadFloat();
+
+            GameManager.instance.roundtimeManager.roundTime = time;
+        }
+
+        public static void ChatMessage(Packet packet) {
+            string message = packet.ReadString();
+
+            GameManager.instance.chatManager.Chat(message);
+        }
     }
 }

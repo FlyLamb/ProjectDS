@@ -14,6 +14,9 @@ namespace LambWorks.Networking.Client {
 
         public List<Entity> registeredEntities;
 
+        public RoundtimeManager roundtimeManager;
+        public ChatManager chatManager;
+
 
         private void Awake() {
             if (instance == null) {

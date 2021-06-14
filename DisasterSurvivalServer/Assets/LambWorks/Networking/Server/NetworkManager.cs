@@ -8,6 +8,8 @@ namespace LambWorks.Networking.Server {
 
         public GameObject playerPrefab;
 
+        public ServerRoundManager roundtimeManager;
+        public ChatHandler chatManager;
 
         private void Awake() {
             if (instance == null) {
@@ -29,22 +31,29 @@ namespace LambWorks.Networking.Server {
             Server.Stop();
         }
 
-        public Vector3 GetRandomPlayerSpawn() {
+        public Transform GetRandomPlayerSpawn() {
             GameObject[] spawns = GameObject.FindGameObjectsWithTag("PlayerSpawn");
-            if(spawns.Length == 0) return Vector3.up;
-            return spawns[Random.Range(0,spawns.Length)].transform.position;
+            if(spawns.Length == 0) return transform;
+            return spawns[Random.Range(0,spawns.Length)].transform;
         }
 
         public Player InstantiatePlayer() {
-            Vector3 playerSpawn = GetRandomPlayerSpawn();
-            return Instantiate(playerPrefab, playerSpawn, Quaternion.identity).GetComponent<Player>();
+            UnityEngine.SceneManagement.SceneManager.SetActiveScene(UnityEngine.SceneManagement.SceneManager.GetSceneAt(0));
+            Transform playerSpawn = GetRandomPlayerSpawn();
+            if(instance.roundtimeManager.isWarmup)
+                return Instantiate(playerPrefab, playerSpawn.position, playerSpawn.rotation).GetComponent<Player>();
+            else 
+                return Instantiate(playerPrefab, new Vector3(15 + Random.Range(-4,4),4,68 + Random.Range(-4,4)),Quaternion.identity).GetComponent<Player>();
+                
         }
 
         /// <summary>This is called when a player joins</summary>
         public void OnPlayerJoin(int id) {
             foreach (var item in Server.entities.Values) {
                 ServerSend.SpawnEntity(item, id);
+                
             }
+            NetworkManager.instance.chatManager.Send($"{Server.clients[id].player.username} has joined");
         }
 
         /// <summary>Needs to be called by the entity in order to be registered</summary>

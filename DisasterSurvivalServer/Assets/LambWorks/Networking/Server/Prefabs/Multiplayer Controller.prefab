@@ -523,7 +523,8 @@ MonoBehaviour:
   rampAdjustForce: 500
   airControl: 0.1
   stepHeight: 0.8
-  downPushForce: 15
+  minStep: 0.01
+  downPushForce: 150
   normalCheckerHeight: 1.157
   stairLookahead: 16
   angleFriction:

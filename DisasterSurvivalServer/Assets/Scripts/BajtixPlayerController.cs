@@ -51,6 +51,7 @@ public class BajtixPlayerController : MonoBehaviour {
     public float airControl = 0.1f;
 
     public float stepHeight = 0.8f;
+    public float minStep = 0.01f;
     public float downPushForce = 15;
     public float normalCheckerHeight = 0.9603f;
     public float stairLookahead = 16;
@@ -244,7 +245,7 @@ public class BajtixPlayerController : MonoBehaviour {
         if(Physics.Raycast(stairChecker.position, Vector3.down, out hit, normalCheckerHeight + 0.5f, groundMask)) {
             var w = hit.distance - normalCheckerHeight;
             //Debug.Log("Hit distance: " + hit.distance + "; Diff: " + (hit.distance - normalCheckerHeight));
-            if(w < -0.01 && w > -stepHeight && Vector3.Angle(Vector3.up, hit.normal) < normalSteepPoint * 45) {
+            if(w < -minStep && w > -stepHeight && Vector3.Angle(Vector3.up, hit.normal) < normalSteepPoint * 15) {
                 rb.MovePosition(transform.position - (hit.distance - normalCheckerHeight) * Vector3.up * 0.4f);
                // Debug.Log("Step!");
             }
@@ -345,6 +346,13 @@ public class BajtixPlayerController : MonoBehaviour {
         bool isRunningBackwards = IsRoughlyOpposite(transform.forward, smoothedVelocity);
         GetComponent<SyncedAnimator>().values[0] = smoothedVelocity.magnitude / speed * (isRunningBackwards ? -1 : 1);
         GetComponent<SyncedAnimator>().values[1] = isGrounded ? 1 : 0;
+    }
+
+    public void Teleport(Vector3 position, Quaternion rotation, bool keepMomentum = false) {
+        rb.velocity = Vector3.zero;
+        transform.SetPositionAndRotation(position,rotation);
+        
+        
     }
 
     public void Interaction() {
