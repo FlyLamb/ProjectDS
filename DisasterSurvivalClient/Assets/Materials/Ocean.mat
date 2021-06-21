@@ -168,7 +168,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Big_Wave_Normal_Strength: 0.31
+    - Big_Wave_Normal_Strength: 0.1
     - Displacement_Wave_Factor_Strength: 1
     - Displacement_Wave_Height: 3
     - Displacement_Wave_Noise_Scale: 0.2
@@ -177,11 +177,13 @@ Material:
     - Foam_Noise_Scale: 400
     - Foam_Noiser_Scroll_Speed: 0.001
     - Foam_Strength: 1.83
+    - Metallic: 0.81
     - Normal_Scroll_Speed: 10
     - Normal_Speed: 10
     - Normal_Strength: 0.25
-    - Small_Wave_Normal_Scale: 0.14
+    - Small_Wave_Normal_Scale: -0.04
     - Small_Wave_Scale: 0.31
+    - Smoothness: 0.85
     - Wave_Factor_Strength: 1
     - Wave_Height: 2
     - Wave_Noise_Scale: 0.3
@@ -226,6 +228,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
+    - _Float: 0
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
